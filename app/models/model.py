@@ -10,7 +10,8 @@ class URL(SQLModel, table=True):
 
 class ShortenRequest(BaseModel):
     url: HttpUrl
-    custom_alias: str | None = None
+    custom_alias: str = Field(default=None, nullable=False)
+
 
 
 class ShortenResponse(BaseModel):
