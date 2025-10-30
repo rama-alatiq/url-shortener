@@ -1,11 +1,11 @@
 import os
 from sqlalchemy import NullPool
 from sqlmodel import SQLModel, Session, create_engine
+from dotenv import load_dotenv
 
+load_dotenv()
 
-#access env variable
 DATABASE_URL=os.environ.get(
-    #environment variable
     "DATABASE_URL", 
     "sqlite:///./fallback.db" 
 )
@@ -28,6 +28,8 @@ def get_session():
         yield session
 
 def create_db_and_table():
+   
+    from app.models.model import URL  # type: ignore # noqa: F401
     try:
         SQLModel.metadata.create_all(engine)  
         print("Database created successfully")
@@ -40,8 +42,8 @@ if __name__ == "__main__":
     print("Running table creation utility...")
 if "postgresql" in DATABASE_URL:
     print(f"Connecting to Postgres at: {DATABASE_URL.split('@')[-1]}")
-    create_db_and_table()
 else:
     print(f"Connecting to SQLite fallback: {DATABASE_URL}")
-    create_db_and_table()
+
+create_db_and_table()
 print("-" * 40)   
