@@ -1,10 +1,10 @@
 import secrets
 import string
 from fastapi import APIRouter, HTTPException, Request
+from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import RedirectResponse
 from app.models.model import ShortenRequest, ShortenResponse, URL
 from app.deps.deps import SessionDep
-
 
 
 router=APIRouter(tags=["shortner"])

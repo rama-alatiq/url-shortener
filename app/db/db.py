@@ -35,15 +35,17 @@ def create_db_and_table():
         print("Database created successfully")
     except Exception as e:
         print(f"Error during table creation:{e}")      
+  
 
 
 if __name__ == "__main__":
     print("-" * 40)
     print("Running table creation utility...")
-if "postgresql" in DATABASE_URL:
-    print(f"Connecting to Postgres at: {DATABASE_URL.split('@')[-1]}")
-else:
-    print(f"Connecting to SQLite fallback: {DATABASE_URL}")
+    if "postgresql" in DATABASE_URL:
+        print(f"Connecting to Postgres at: {DATABASE_URL.split('@')[-1]}")
+    else:
+        print(f"Connecting to SQLite fallback: {DATABASE_URL}")
 
-create_db_and_table()
-print("-" * 40)   
+    create_db_and_table()
+    print("-" * 40)
+
