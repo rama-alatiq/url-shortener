@@ -5,7 +5,7 @@ from sqlmodel import Field, SQLModel
 
 class URL(SQLModel, table=True):
     alias: str = Field(primary_key=True)
-    url: str
+    url: str = Field(default=None, nullable=False)
 
 
 class ShortenRequest(BaseModel):
